@@ -1,0 +1,7 @@
+body {
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin: 0;
+  background-color: rgba(30, 30, 30, 0.888);
+  padding: 0;
+}

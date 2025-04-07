@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Underdog&display=swap");
+
+:root {
+  --primary-color: #e0c521;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  width: clamp(150px, 100%, 180px);
+  height: 250px;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-sizing: border-box;
+  border-radius: 7px;
+  padding: 0.5rem 0.9rem;
+  padding-left: 0.3rem;
+  position: relative;
+  border: 3px solid var(--primary-color);
+}
+
+.img-container {
+  margin-bottom: 20px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.menu-img {
+  width: 100px;
+}
+
+.menu-img img {
+  object-fit: cover;
+}
+
+.price-display {
+  font-weight: bolder;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.counter {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  /* background-color: transparent; */
+  border: 2px solid var(--primary-color);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Bebas Neue", sans-serif;
+}
+
+.counter.counter-inactive {
+  background-color: transparent;
+  color: transparent;
+  border: 2px solid var(--primary-color);
+  pointer-events: none; /* Makes it non-interactive */
+  opacity: 0.5; /* Optional: makes it look faded */
+}
