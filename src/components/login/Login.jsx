@@ -14,22 +14,21 @@ const Login = () => {
       return;
     }
     setError("");
+    if (!window.Telegram || !window.Telegram.WebApp) {
+      setError("Telegram WebApp is not available.");
+      return;
+    }
+    const telegram = window.Telegram?.WebApp || null;
+    console.log(telegram);
+    const { id } = telegram.initDataUnsafe.user;
+    const usernameData = username;
+    const passwordData = password;
+    const data = {
+      telegramId: id,
+      username: usernameData,
+      password: passwordData,
+    };
     try {
-      if (!window.Telegram || !window.Telegram.WebApp) {
-        setError("Telegram WebApp is not available.");
-        return;
-      }
-      const telegram = window.Telegram?.WebApp || null;
-      console.log(telegram);
-      const { id } = telegram.initDataUnsafe.user;
-      const usernameData = username;
-      const passwordData = password;
-      const data = {
-        telegramId: id,
-        username: usernameData,
-        password: passwordData,
-      };
-
       const response = await fetch("http://localhost:6000/login", {
         method: "POST",
         headers: {
@@ -50,6 +49,10 @@ const Login = () => {
     } catch (err) {
       console.log(err.message);
       setError("error inside try block, " + err.message);
+    } finally {
+      setUsername("");
+      setPassword("");
+      setError(JSON.stringify(data));
     }
   }
 
