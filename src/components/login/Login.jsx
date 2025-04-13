@@ -20,6 +20,7 @@ const Login = () => {
         return;
       }
       const telegram = window.Telegram?.WebApp || null;
+      console.log(telegram);
       const { id } = telegram.initDataUnsafe.user;
       const usernameData = username;
       const passwordData = password;
@@ -47,6 +48,7 @@ const Login = () => {
       }
     } catch (err) {
       console.log(err.message);
+      setError(err.message);
     }
   }
 
