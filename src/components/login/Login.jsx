@@ -39,16 +39,17 @@ const Login = () => {
       });
       const { success, message } = await response.json();
       setError(
-        message || "after sending data to server, no response from server"
+        "from server" + message ||
+          "after sending data to server, no response from server"
       );
       if (success) {
         navigate("/main");
       } else {
-        setError(message);
+        setError("unsuccessful ", message);
       }
     } catch (err) {
       console.log(err.message);
-      setError(err.message);
+      setError("error inside try block, ", err.message);
     }
   }
 
