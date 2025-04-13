@@ -49,7 +49,7 @@ const Login = () => {
       }
     } catch (err) {
       console.log(err.message);
-      setError("error inside try block, ", err.message);
+      setError("error inside try block, " + err.message);
     }
   }
 
