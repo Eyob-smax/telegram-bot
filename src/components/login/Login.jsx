@@ -19,24 +19,25 @@ const Login = () => {
       return;
     }
     const telegram = window.Telegram?.WebApp || null;
-    console.log(telegram);
-    const { id } = telegram.initDataUnsafe.user;
+    const { id } = telegram?.initDataUnsafe?.user || undefined;
     const usernameData = username;
     const passwordData = password;
-
+    const data = {
+      telegramId: id || "1259654531",
+      name: usernameData,
+      password: passwordData,
+    };
     try {
-      const response = await fetch("http://localhost:6000/login", {
+      const response = await fetch("http://localhost:8000/login", {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          telegramId: id,
-          name: usernameData,
-          password: passwordData,
-        }),
+        body: JSON.stringify(data),
       });
       const { success, message } = await response.json();
+      console.log(success, message);
       setError(
         "from server" + message ||
           "after sending data to server, no response from server"
@@ -49,9 +50,6 @@ const Login = () => {
     } catch (err) {
       console.log(err.message);
       setError("error inside try block, " + err.message);
-    } finally {
-      setUsername("");
-      setPassword("");
     }
   }
 
