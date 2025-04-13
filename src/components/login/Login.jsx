@@ -23,18 +23,18 @@ const Login = () => {
     const { id } = telegram.initDataUnsafe.user;
     const usernameData = username;
     const passwordData = password;
-    const data = {
-      telegramId: id,
-      username: usernameData,
-      password: passwordData,
-    };
+
     try {
       const response = await fetch("http://localhost:6000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          telegramId: id,
+          name: usernameData,
+          password: passwordData,
+        }),
       });
       const { success, message } = await response.json();
       setError(
@@ -52,7 +52,6 @@ const Login = () => {
     } finally {
       setUsername("");
       setPassword("");
-      setError(JSON.stringify(data));
     }
   }
 
