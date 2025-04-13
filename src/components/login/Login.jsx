@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -35,6 +36,12 @@ const Login = () => {
         },
         body: JSON.stringify(data),
       });
+      const { success, message } = await response.json();
+      if (success) {
+        navigate("/main");
+      } else {
+        setError(message);
+      }
     } catch (err) {
       console.log(err.message);
     }
