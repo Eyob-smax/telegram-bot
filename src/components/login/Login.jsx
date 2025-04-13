@@ -37,6 +37,9 @@ const Login = () => {
         body: JSON.stringify(data),
       });
       const { success, message } = await response.json();
+      setError(
+        message || "after sending data to server, no response from server"
+      );
       if (success) {
         navigate("/main");
       } else {
